@@ -124,8 +124,38 @@ function AdminDashboard() {
   return (
     <div className="flex h-screen overflow-hidden bg-slate-50">
 
+      {/* Mobile topbar */}
+      <div className="md:hidden fixed top-0 left-0 right-0 z-40 bg-slate-900 border-b border-slate-700 px-4 py-3 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <div className="w-7 h-7 bg-indigo-600 rounded-lg flex items-center justify-center">
+            <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+            </svg>
+          </div>
+          <span className="text-white font-bold text-sm">TaskFlow</span>
+          <span className="text-indigo-400 text-xs ml-1">Admin</span>
+        </div>
+        <div className="flex gap-3">
+          <button
+            onClick={() => setActiveTab("tasks")}
+            className={`text-xs px-2 py-1 rounded ${activeTab === "tasks" ? "bg-indigo-600 text-white" : "text-slate-300"}`}
+          >
+            Tasks
+          </button>
+          <button
+            onClick={() => setActiveTab("users")}
+            className={`text-xs px-2 py-1 rounded ${activeTab === "users" ? "bg-indigo-600 text-white" : "text-slate-300"}`}
+          >
+            Users
+          </button>
+          <button onClick={handleLogout} className="text-xs text-slate-400 px-2 py-1">
+            Logout
+          </button>
+        </div>
+      </div>
+
       {/* Sidebar */}
-      <div className="w-56 h-screen shrink-0 bg-slate-900 border-r border-slate-700 flex flex-col">
+      <div className="hidden md:flex w-56 h-screen shrink-0 bg-slate-900 border-r border-slate-700 flex-col">
         <div className="p-5 border-b border-slate-700">
           <div className="flex items-center gap-2.5">
             <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center shrink-0">
@@ -185,7 +215,7 @@ function AdminDashboard() {
 
       {/* Main */}
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
-        <div className="shrink-0 bg-white border-b border-gray-200 px-6 py-3.5 flex justify-between items-center">
+        <div className="shrink-0 bg-white border-b border-gray-200 px-4 md:px-6 py-3.5 flex justify-between items-center mt-12 md:mt-0">
           <h2 className="text-base font-semibold text-gray-800">
             {activeTab === "tasks" ? "All Tasks" : "Manage Users"}
           </h2>
@@ -202,11 +232,11 @@ function AdminDashboard() {
           )}
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-4 md:p-6">
 
           {activeTab === "tasks" && (
             <>
-              <div className="grid grid-cols-4 gap-4 mb-6">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-6">
                 {[
                   { label: "Total Tasks", value: tasks.length, color: "text-indigo-600" },
                   { label: "Pending", value: tasks.filter(t => t.status === "Pending").length, color: "text-yellow-600" },
@@ -226,6 +256,7 @@ function AdminDashboard() {
                 ) : tasks.length === 0 ? (
                   <div className="p-8 text-center text-gray-400 text-sm">No tasks yet. Assign one!</div>
                 ) : (
+                  <div className="overflow-x-auto">
                   <table className="w-full text-sm">
                     <thead>
                       <tr className="bg-gray-50 border-b border-gray-200">
@@ -283,6 +314,7 @@ function AdminDashboard() {
                       ))}
                     </tbody>
                   </table>
+                  </div>
                 )}
               </div>
             </>
@@ -295,6 +327,7 @@ function AdminDashboard() {
               ) : users.length === 0 ? (
                 <div className="p-8 text-center text-gray-400 text-sm">No users registered yet.</div>
               ) : (
+                <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead>
                     <tr className="bg-gray-50 border-b border-gray-200">
@@ -331,6 +364,7 @@ function AdminDashboard() {
                     })}
                   </tbody>
                 </table>
+                </div>
               )}
             </div>
           )}

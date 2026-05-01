@@ -63,13 +63,12 @@ function Dashboard() {
           <Navbar title="Dashboard" />
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-4 md:p-6">
           {loading ? (
             <div className="text-center py-12 text-gray-400">Loading...</div>
           ) : (
             <>
-              {/* Stats Cards */}
-              <div className="grid grid-cols-4 gap-4 mb-6">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-6">
                 <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
                   <div className="flex items-center justify-between mb-2">
                     <p className="text-xs font-medium text-gray-500 uppercase tracking-wide">

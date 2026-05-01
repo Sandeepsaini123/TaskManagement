@@ -8,8 +8,8 @@ A full-stack role-based task management application built with React, Node.js, E
 
 | Service | URL |
 |---|---|
-| Frontend | *(Add Vercel URL after deployment)* |
-| Backend API | *(Add Railway URL after deployment)* |
+| Frontend | https://task-management-delta-woad.vercel.app |
+| Backend API | https://taskflow-backend-8dn4.onrender.com/api |
 
 ---
 

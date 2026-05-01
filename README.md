@@ -21,7 +21,7 @@ A full-stack role-based task management application built with React, Node.js, E
 | Field | Value |
 |---|---|
 | Email | `admin@taskflow.com` |
-| Password | *(set during registration)* |
+| Password | Sainiboy123@ |
 
 **To create the admin account:**
 1. Go to `/register`
